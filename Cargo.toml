@@ -1,5 +1,5 @@
 [package]
-name = "cargo-example"
+name = "cargo-example2"
 version = "0.1.0"
 edition = "2021"
 
@@ -9,6 +9,10 @@ license = "MIT"
 keywords = ["cargo", "example"]
 categories = ["command-line-utilities", "development-tools::cargo-plugins"]
 description = "cargo run --example without git cloning"
+
+[[bin]]
+name = "cargo-example"
+path = "src/main.rs"
 
 [dependencies]
 ahash = "0.8.3"

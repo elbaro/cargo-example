@@ -1,8 +1,7 @@
-# cargo-example
-
+# cargo-example2
 
 ```
-cargo install cargo-example
+cargo install cargo-example2
 ```
 
 List examples
@@ -34,3 +33,12 @@ Multiple crates in one repo
 ```sh
 ❯ cargo example https://github.com/DioxusLabs/dioxus/ --path packages/dioxus-tui/Cargo.toml --example border
 ```
+
+## vs cargo-example ?
+[cargo-example](https://github.com/BrandtM/cargo-example) is archived and does not work with multi-crate repos.
+
+
+```
+cargo example dioxus-tui
+```
+This will list all examples in the repo, which are not examples of dioxus-tui.
