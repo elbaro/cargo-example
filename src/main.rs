@@ -9,17 +9,20 @@ pub struct Args {
     #[clap(long)]
     example: Option<String>,
 
+    /// A subpath to Cargo.toml
+    #[clap(long, default_value = "Cargo.toml")]
+    path: String,
+
     #[arg(long, group = "git")]
     rev: Option<String>,
     #[arg(long, group = "git")]
     branch: Option<String>,
 
-    #[arg(long, group = "build-mode")]
-    debug: bool,
-    #[arg(long, group = "build-mode")]
-    release: bool,
     #[command(flatten)]
     verbose: Verbosity<InfoLevel>,
+
+    #[arg(last = true)]
+    cargo_args: Vec<String>,
 }
 
 fn main() {
@@ -72,14 +75,12 @@ fn main() {
     // 3. run
     // cargo run --example [example] [--debug|--release]
     let mut cmd = std::process::Command::new("cargo");
-    dir.push("Cargo.toml");
+    dir.push(args.path);
     cmd.args(["run", "--manifest-path", dir.to_str().unwrap(), "--example"]);
     if let Some(example) = args.example {
         cmd.arg(example);
     }
-    if args.release {
-        cmd.arg("--release");
-    }
+    cmd.args(args.cargo_args);
     log::info!("{:?}", cmd);
     cmd.spawn()
         .expect("example failed to run")
