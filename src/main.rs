@@ -13,14 +13,13 @@ pub struct Args {
     #[clap(long, default_value = "Cargo.toml")]
     path: String,
 
-    #[arg(long, group = "git")]
-    rev: Option<String>,
-    #[arg(long, group = "git")]
-    branch: Option<String>,
+    #[arg(long)]
+    checkout: Option<String>,
 
     #[command(flatten)]
     verbose: Verbosity<InfoLevel>,
 
+    /// extra args passed to cargo run --example
     #[arg(last = true)]
     cargo_args: Vec<String>,
 }
@@ -53,19 +52,10 @@ fn main() {
         .expect("failed to clone");
 
     // 2. checkout
-    if let Some(branch) = args.branch {
+    if let Some(checkout) = args.checkout {
         let mut cmd = std::process::Command::new("git");
-        cmd.args(["checkout", &branch]);
-        log::info!("checkout {} ..", branch);
-        cmd.spawn()
-            .expect("git checkout failed")
-            .wait()
-            .expect("git checkout failed");
-    }
-    if let Some(rev) = args.rev {
-        let mut cmd = std::process::Command::new("git");
-        cmd.args(["checkout", &rev]);
-        log::info!("checkout {} ..", rev);
+        cmd.args(["checkout", &checkout]);
+        log::info!("checkout {} ..", checkout);
         cmd.spawn()
             .expect("git checkout failed")
             .wait()
