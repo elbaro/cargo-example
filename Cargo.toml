@@ -2,10 +2,10 @@
 name = "cargo-example2"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
 
 authors = ["elbaro <elbaro@users.noreply.github.com>"]
 repository = "https://github.com/elbaro/cargo-example"
-license = "MIT"
 keywords = ["cargo", "example"]
 categories = ["command-line-utilities", "development-tools::cargo-plugins"]
 description = "cargo run --example without git cloning"
