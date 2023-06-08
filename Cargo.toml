@@ -8,7 +8,7 @@ repository = "https://github.com/elbaro/cargo-example"
 license = "MIT"
 keywords = ["cargo", "example"]
 categories = ["command-line-utilities", "development-tools::cargo-plugins"]
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+description = "cargo run --example without git cloning"
 
 [dependencies]
 ahash = "0.8.3"
